@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     TextView result;
     TextView expression;
     String exp;
+    String value;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +40,7 @@ public class MainActivity extends AppCompatActivity {
         result=findViewById(R.id.result);
         expression=findViewById(R.id.expression);
 
-        btn0.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
-            {
+        btn0.setOnClickListener(v->{
                 exp=(String)expression.getText();
                 if(!exp.equals("")){
                     exp=exp+"0";
@@ -50,11 +48,12 @@ public class MainActivity extends AppCompatActivity {
                     expression.setText(exp);
                 }
                 else{
-                    result.setText(Integer.toString(0));
-                    expression.setText(Integer.toString(0));
+                    value=Integer.toString(0);
+                    result.setText(value);
+                    expression.setText(value);
                 }
             }
-        });
+        );
         btn1.setOnClickListener( v ->
             {
                 exp=(String)expression.getText();
@@ -64,14 +63,13 @@ public class MainActivity extends AppCompatActivity {
                     expression.setText(exp);
                 }
                 else{
-                    result.setText(Integer.toString(1));
-                    expression.setText(Integer.toString(1));
+                    value = Integer.toString(1);
+                    result.setText(value);
+                    expression.setText(value);
                 }
             }
         );
-        btn2.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
+        btn2.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
                 if(!exp.equals("")){
@@ -80,14 +78,13 @@ public class MainActivity extends AppCompatActivity {
                     expression.setText(exp);
                 }
                 else{
-                    result.setText(Integer.toString(2));
-                    expression.setText(Integer.toString(2));
+                    value = Integer.toString(2);
+                    result.setText(value);
+                    expression.setText(value);
                 }
             }
-        });
-        btn3.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
+        );
+        btn3.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
                 if(!exp.equals("")){
@@ -96,14 +93,13 @@ public class MainActivity extends AppCompatActivity {
                     expression.setText(exp);
                 }
                 else{
-                    result.setText(Integer.toString(3));
-                    expression.setText(Integer.toString(3));
+                    value = Integer.toString(3);
+                    result.setText(value);
+                    expression.setText(value);
                 }
             }
-        });
-        btn4.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
+        );
+        btn4.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
                 if(!exp.equals("")){
@@ -112,14 +108,13 @@ public class MainActivity extends AppCompatActivity {
                     expression.setText(exp);
                 }
                 else{
-                    result.setText(Integer.toString(4));
-                    expression.setText(Integer.toString(4));
+                    value=Integer.toString(4);
+                    result.setText(value);
+                    expression.setText(value);
                 }
             }
-        });
-        btn5.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
+        );
+        btn5.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
                 if(!exp.equals("")){
@@ -128,14 +123,13 @@ public class MainActivity extends AppCompatActivity {
                     expression.setText(exp);
                 }
                 else{
-                    result.setText(Integer.toString(5));
-                    expression.setText(Integer.toString(5));
+                    value=Integer.toString(5);
+                    result.setText(value);
+                    expression.setText(value);
                 }
             }
-        });
-        btn6.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
+        );
+        btn6.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
                 if(!exp.equals("")){
@@ -144,14 +138,13 @@ public class MainActivity extends AppCompatActivity {
                     expression.setText(exp);
                 }
                 else{
-                    result.setText(Integer.toString(6));
-                    expression.setText(Integer.toString(6));
+                    value=Integer.toString(6);
+                    result.setText(value);
+                    expression.setText(value);
                 }
             }
-        });
-        btn7.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
+        );
+        btn7.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
                 if(!exp.equals("")){
@@ -160,14 +153,13 @@ public class MainActivity extends AppCompatActivity {
                     expression.setText(exp);
                 }
                 else{
-                    result.setText(Integer.toString(7));
-                    expression.setText(Integer.toString(7));
+                    value = Integer.toString(7);
+                    result.setText(value);
+                    expression.setText(value);
                 }
             }
-        });
-        btn8.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
+        );
+        btn8.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
                 if(!exp.equals("")){
@@ -176,14 +168,13 @@ public class MainActivity extends AppCompatActivity {
                     expression.setText(exp);
                 }
                 else{
-                    result.setText(Integer.toString(8));
-                    expression.setText(Integer.toString(8));
+                    value = Integer.toString(8);
+                    result.setText(value);
+                    expression.setText(value);
                 }
             }
-        });
-        btn9.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
+        );
+        btn9.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
                 if(!exp.equals("")){
@@ -192,68 +183,64 @@ public class MainActivity extends AppCompatActivity {
                     expression.setText(exp);
                 }
                 else{
-                    result.setText(Integer.toString(9));
-                    expression.setText(Integer.toString(9));
+                    value= Integer.toString(9);
+                    result.setText(value);
+                    expression.setText(value);
                 }
             }
-        });
+        );
 
-        plus.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
+        plus.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
                 if(!exp.equals("")) {
                     exp = exp + "+";
-                    result.setText(Integer.toString(0));
+                    value =Integer.toString(0);
+                    result.setText(value);
                     expression.setText(exp);
                 }
             }
-        });
-        minus.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
+        );
+        minus.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
                 if(!exp.equals("")){
                     exp=exp+"-";
-                    result.setText(Integer.toString(0));
+                    value =Integer.toString(0);
+                    result.setText(value);
                     expression.setText(exp);
                 }
 
             }
-        });
-        mul.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
+        );
+        mul.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
-                if(exp.equals("")) {
+                if(!exp.equals("")) {
                     exp = exp + "x";
-                    result.setText(Integer.toString(0));
+                    value =Integer.toString(0);
+                    result.setText(value);
                     expression.setText(exp);
                 }
             }
-        });
-        div.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
+        );
+        div.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
                 if(!exp.equals("")){
                     exp=exp+"/";
-                    result.setText(Integer.toString(0));
+                    value =Integer.toString(0);
+                    result.setText(value);
                     expression.setText(exp);
                 }
             }
-        });
-        cut.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
+        );
+        cut.setOnClickListener(v->
             {
-                    result.setText(Integer.toString(0));
-                    expression.setText(Integer.toString(0));
+                value =Integer.toString(0);
+                result.setText(value);
+                expression.setText(value);
             }
-        });
+     );
     }
 }
