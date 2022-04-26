@@ -12,16 +12,24 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     Button btn0,btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9;
-    Button plus,minus,mul,div,cut;
+    Button plus,minus,mul,div,cut,eq;
     TextView result;
     TextView expression;
     String exp;
+    String res;
     String value;
+    Boolean zeroCheck;
+    int op1;
+    int op2;
+    boolean operatorPlus;
+    boolean operatorMinus;
+    boolean operatorMul;
+    boolean operatorDiv;
+    boolean equal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         btn0=findViewById(R.id.zero);
         btn1=findViewById(R.id.one);
         btn2=findViewById(R.id.B2);
@@ -39,12 +47,21 @@ public class MainActivity extends AppCompatActivity {
         cut=findViewById(R.id.clear);
         result=findViewById(R.id.result);
         expression=findViewById(R.id.expression);
+        eq=findViewById(R.id.equal);
 
         btn0.setOnClickListener(v->{
-                exp=(String)expression.getText();
-                if(!exp.equals("")){
+            exp=(String)expression.getText();
+            res=(String)result.getText();
+            if(!exp.equals("") && !exp.equals("0") && zeroCheck){
+                exp=exp+"0";
+                result.setText(res);
+                expression.setText(exp);
+                zeroCheck=false;
+            }
+                else if(!exp.equals("") && !exp.equals("0")){
                     exp=exp+"0";
-                    result.setText(exp);
+                    res=res+"0";
+                    result.setText(res);
                     expression.setText(exp);
                 }
                 else{
@@ -57,9 +74,11 @@ public class MainActivity extends AppCompatActivity {
         btn1.setOnClickListener( v ->
             {
                 exp=(String)expression.getText();
+                res=(String)result.getText();
                 if(!exp.equals("")){
                     exp=exp+"1";
-                    result.setText(exp);
+                    res=res+"1";
+                    result.setText(res);
                     expression.setText(exp);
                 }
                 else{
@@ -72,9 +91,11 @@ public class MainActivity extends AppCompatActivity {
         btn2.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
+                res=(String)result.getText();
                 if(!exp.equals("")){
                     exp=exp+"2";
-                    result.setText(exp);
+                    res=res+"2";
+                    result.setText(res);
                     expression.setText(exp);
                 }
                 else{
@@ -87,9 +108,11 @@ public class MainActivity extends AppCompatActivity {
         btn3.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
+                res=(String)result.getText();
                 if(!exp.equals("")){
                     exp=exp+"3";
-                    result.setText(exp);
+                    res=res+"3";
+                    result.setText(res);
                     expression.setText(exp);
                 }
                 else{
@@ -102,9 +125,11 @@ public class MainActivity extends AppCompatActivity {
         btn4.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
+                res=(String)result.getText();
                 if(!exp.equals("")){
                     exp=exp+"4";
-                    result.setText(exp);
+                    res=res+"4";
+                    result.setText(res);
                     expression.setText(exp);
                 }
                 else{
@@ -117,9 +142,11 @@ public class MainActivity extends AppCompatActivity {
         btn5.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
+                res=(String)result.getText();
                 if(!exp.equals("")){
                     exp=exp+"5";
-                    result.setText(exp);
+                    res=res+"5";
+                    result.setText(res);
                     expression.setText(exp);
                 }
                 else{
@@ -132,9 +159,11 @@ public class MainActivity extends AppCompatActivity {
         btn6.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
+                res=(String)result.getText();
                 if(!exp.equals("")){
                     exp=exp+"6";
-                    result.setText(exp);
+                    res=res+"6";
+                    result.setText(res);
                     expression.setText(exp);
                 }
                 else{
@@ -147,9 +176,11 @@ public class MainActivity extends AppCompatActivity {
         btn7.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
+                res=(String)result.getText();
                 if(!exp.equals("")){
                     exp=exp+"7";
-                    result.setText(exp);
+                    res=res+"7";
+                    result.setText(res);
                     expression.setText(exp);
                 }
                 else{
@@ -162,9 +193,11 @@ public class MainActivity extends AppCompatActivity {
         btn8.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
+                res=(String)result.getText();
                 if(!exp.equals("")){
                     exp=exp+"8";
-                    result.setText(exp);
+                    res=res+"8";
+                    result.setText(res);
                     expression.setText(exp);
                 }
                 else{
@@ -177,9 +210,11 @@ public class MainActivity extends AppCompatActivity {
         btn9.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
+                res=(String)result.getText();
                 if(!exp.equals("")){
                     exp=exp+"9";
-                    result.setText(exp);
+                    res=res+"9";
+                    result.setText(res);
                     expression.setText(exp);
                 }
                 else{
@@ -193,54 +228,123 @@ public class MainActivity extends AppCompatActivity {
         plus.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
-                if(!exp.equals("")) {
+                res=(String)result.getText();
+                op1=Integer.parseInt(res);
+                int p =exp.indexOf("+",exp.length()-1);
+                int mi =exp.indexOf("-",exp.length()-1);
+                int mu =exp.indexOf("x",exp.length()-1);
+                int d =exp.indexOf("/",exp.length()-1);
+                if(!exp.equals("") && p==-1&& mi==-1&& mu==-1&& d==-1) {
                     exp = exp + "+";
-                    value =Integer.toString(0);
-                    result.setText(value);
+                    result.setText("");
                     expression.setText(exp);
                 }
+                zeroCheck=true;
+                operatorPlus=true;
+                operatorDiv=false;
+                operatorMinus=false;
+                operatorMul=false;
             }
         );
         minus.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
-                if(!exp.equals("")){
+                res=(String)result.getText();
+                op1=Integer.parseInt(res);
+                int p =exp.indexOf("+",exp.length()-1);
+                int mi =exp.indexOf("-",exp.length()-1);
+                int mu =exp.indexOf("x",exp.length()-1);
+                int d =exp.indexOf("/",exp.length()-1);
+                if(!exp.equals("") && p==-1&& mi==-1&& mu==-1&& d==-1) {
+
                     exp=exp+"-";
-                    value =Integer.toString(0);
-                    result.setText(value);
+                    result.setText("");
                     expression.setText(exp);
                 }
-
+                zeroCheck=true;
+                operatorPlus=false;
+                operatorDiv=false;
+                operatorMinus=true;
+                operatorMul=false;
             }
         );
         mul.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
-                if(!exp.equals("")) {
+                res=(String)result.getText();
+                op1=Integer.parseInt(res);
+                int p =exp.indexOf("+",exp.length()-1);
+                int mi =exp.indexOf("-",exp.length()-1);
+                int mu =exp.indexOf("x",exp.length()-1);
+                int d =exp.indexOf("/",exp.length()-1);
+                if(!exp.equals("")&& p==-1&& mi==-1&& mu==-1&& d==-1) {
+
                     exp = exp + "x";
-                    value =Integer.toString(0);
-                    result.setText(value);
+                    result.setText("");
                     expression.setText(exp);
                 }
+                zeroCheck=true;
+                operatorPlus=false;
+                operatorDiv=false;
+                operatorMinus=false;
+                operatorMul=true;
             }
         );
         div.setOnClickListener(v->
             {
                 exp=(String)expression.getText();
-                if(!exp.equals("")){
+                res=(String)result.getText();
+                op1=Integer.parseInt(res);
+                int p =exp.indexOf("+",exp.length()-1);
+                int mi =exp.indexOf("-",exp.length()-1);
+                int mu =exp.indexOf("x",exp.length()-1);
+                int d =exp.indexOf("/",exp.length()-1);
+                if(!exp.equals("")&& p==-1&& mi==-1&& mu==-1&& d==-1) {
+
                     exp=exp+"/";
-                    value =Integer.toString(0);
-                    result.setText(value);
+                    result.setText("");
                     expression.setText(exp);
                 }
+                zeroCheck=true;
+                operatorPlus=false;
+                operatorDiv=true;
+                operatorMinus=false;
+                operatorMul=false;
             }
         );
         cut.setOnClickListener(v->
             {
                 value =Integer.toString(0);
                 result.setText(value);
-                expression.setText(value);
+                expression.setText("");
             }
      );
+        eq.setOnClickListener(v->{
+            res=(String)result.getText();
+            op2=Integer.parseInt(res);
+            int eval;
+            String EVAL;
+            if(operatorPlus){
+                eval=op1+op2;
+                EVAL=Integer.toString(eval);
+                result.setText(EVAL);
+            }
+            else if(operatorMul){
+                eval=op1*op2;
+                EVAL=Integer.toString(eval);
+                result.setText(EVAL);
+            }
+            else if(operatorDiv){
+                eval=op1/op2;
+                EVAL=Integer.toString(eval);
+                result.setText(EVAL);
+            }
+            else if(operatorMinus){
+                eval=op1-op2;
+                EVAL=Integer.toString(eval);
+                result.setText(EVAL);
+            }
+            equal = true;
+        });
     }
 }

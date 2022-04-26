@@ -66,7 +66,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/one"
         app:layout_constraintEnd_toStartOf="@+id/three"
         app:layout_constraintStart_toEndOf="@+id/one"
-        app:layout_constraintTop_toTopOf="@+id/one" />
+        app:layout_constraintTop_toTopOf="@+id/one"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/one"
@@ -90,7 +91,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/B2"
         app:layout_constraintEnd_toStartOf="@+id/multiply"
         app:layout_constraintStart_toEndOf="@+id/B2"
-        app:layout_constraintTop_toTopOf="@+id/B2" />
+        app:layout_constraintTop_toTopOf="@+id/B2"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/multiply"
@@ -103,7 +105,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.259"
         app:layout_constraintStart_toEndOf="@+id/three"
-        app:layout_constraintTop_toTopOf="@+id/three" />
+        app:layout_constraintTop_toTopOf="@+id/three"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/six"
@@ -154,6 +157,19 @@
         app:layout_constraintTop_toBottomOf="@+id/seven" />
 
     <Button
+        android:id="@+id/dot2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/dot2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/zero"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/one" />
+
+    <Button
         android:id="@+id/equal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -178,7 +194,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/dot2"
         app:layout_constraintEnd_toStartOf="@+id/dot1"
         app:layout_constraintStart_toEndOf="@+id/dot2"
-        app:layout_constraintTop_toTopOf="@+id/dot2" />
+        app:layout_constraintTop_toTopOf="@+id/dot2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/dot1"
@@ -193,19 +210,6 @@
         app:layout_constraintStart_toEndOf="@+id/zero"
         app:layout_constraintTop_toTopOf="@+id/zero"
         app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/dot2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="5dp"
-        android:text="@string/dot2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/zero"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/one" />
 
     <Button
         android:id="@+id/delete"
@@ -249,7 +253,7 @@
         app:layout_constraintEnd_toStartOf="@+id/delete"
         app:layout_constraintStart_toEndOf="@+id/percent"
         app:layout_constraintTop_toTopOf="@+id/percent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/add"
@@ -268,12 +272,13 @@
     <TextView
         android:id="@+id/expression"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_marginStart="3dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="3dp"
         android:layoutDirection="ltr"
         android:text="@string/expression"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/result"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -283,11 +288,12 @@
     <TextView
         android:id="@+id/result"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_marginStart="3dp"
         android:layout_marginEnd="3dp"
         android:layoutDirection="rtl"
         android:text="@string/result"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.485"
