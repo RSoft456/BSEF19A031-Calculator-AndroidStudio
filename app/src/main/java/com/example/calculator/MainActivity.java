@@ -12,15 +12,15 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     Button btn0,btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9;
-    Button plus,minus,mul,div,cut,eq;
+    Button plus,minus,mul,div,cut,eq,decimal1,decimal2;
     TextView result;
     TextView expression;
     String exp;
     String res;
     String value;
     Boolean zeroCheck;
-    int op1;
-    int op2;
+    double op1;
+    double op2;
     String answer;
     int count=0;
     boolean operatorPlus;
@@ -28,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
     boolean operatorMul;
     boolean operatorDiv;
     boolean equal;
-    int evaluate(int x,int y )
+    double evaluate(double x,double y )
     {
-        int ans=0;
+        double ans=0;
         if(operatorPlus){
             ans= x+y;
         }
@@ -67,8 +67,118 @@ public class MainActivity extends AppCompatActivity {
         result=findViewById(R.id.result);
         expression=findViewById(R.id.expression);
         eq=findViewById(R.id.equal);
+        decimal1=findViewById(R.id.dot1);
+        decimal2=findViewById(R.id.dot2);
 
 
+        decimal1.setOnClickListener(v->{
+                    exp=(String)expression.getText();
+                    res=(String)result.getText();
+            int p =exp.indexOf("+",exp.length()-1);
+            int mi =exp.indexOf("-",exp.length()-1);
+            int mu =exp.indexOf("x",exp.length()-1);
+            int d =exp.indexOf("/",exp.length()-1);
+            int zero =exp.indexOf("0",exp.length()-1);
+                    if(res.equals("math error")){
+                        expression.setText("");
+                        result.setText("0");
+                        exp=(String)expression.getText();
+                        res=(String)result.getText();
+                        if(equal)
+                            equal=false;
+                    }
+                    if(equal){
+                        expression.setText("");
+                        result.setText("0");
+                        exp=(String)expression.getText();
+                        res=(String)result.getText();
+                        equal=false;
+                    }
+                    if(!exp.equals("") && p!=-1 && mi!=-1 && mu!=-1 && d!=-1)
+                    {
+                        exp=exp+"0.";
+                        expression.setText(exp);
+                        if(count==-1) {
+                            res = "0.";
+                            count = 1;
+                        }
+                        else
+                            res = res + ".";
+                        result.setText(res);
+                    }
+                    else if(exp.equals((""))){
+                        exp=exp+"0.";
+                        expression.setText(exp);
+                        res=res+".";
+                        result.setText(res);
+                    }
+                    else if(zero!=-1){
+                        exp=exp+".";
+                        expression.setText(exp);
+                        res=res+".";
+                        result.setText(res);
+                    }
+                    else{
+                        value = "0.";
+                        result.setText(value);
+                        expression.setText(value);
+                    }
+                }
+        );
+        decimal2.setOnClickListener(v->{
+                    exp=(String)expression.getText();
+                    res=(String)result.getText();
+                    int p =exp.indexOf("+",exp.length()-1);
+                    int mi =exp.indexOf("-",exp.length()-1);
+                    int mu =exp.indexOf("x",exp.length()-1);
+                    int d =exp.indexOf("/",exp.length()-1);
+                    int zero =exp.indexOf("0",exp.length()-1);
+                    if(res.equals("math error")){
+                        expression.setText("");
+                        result.setText("0");
+                        exp=(String)expression.getText();
+                        res=(String)result.getText();
+                        if(equal)
+                            equal=false;
+                    }
+                    if(equal){
+                        expression.setText("");
+                        result.setText("0");
+                        exp=(String)expression.getText();
+                        res=(String)result.getText();
+                        equal=false;
+                    }
+                    if(!exp.equals("") && p!=-1 && mi!=-1 && mu!=-1 && d!=-1)
+                    {
+                        exp=exp+"0.";
+                        expression.setText(exp);
+                        if(count==-1) {
+                            res = "0.";
+                            count = 1;
+                        }
+                        else
+                            res = res + ".";
+                        result.setText(res);
+                    }
+                    else if(exp.equals((""))){
+                        exp=exp+"0.";
+                        expression.setText(exp);
+                        res=res+".";
+                        result.setText(res);
+                    }
+                    else if(zero!=-1){
+                        exp=exp+".";
+                        expression.setText(exp);
+                        res=res+".";
+                        result.setText(res);
+                    }
+                    else{
+                        value = "0.";
+                        result.setText(value);
+                        expression.setText(value);
+                    }
+                }
+        );
         btn0.setOnClickListener(v->{
             exp=(String)expression.getText();
             res=(String)result.getText();
@@ -455,7 +565,7 @@ public class MainActivity extends AppCompatActivity {
                     expression.setText(exp);
 
                     if (count==0 && equal){
-                        op1=Integer.parseInt(res);
+                        op1=Double.parseDouble(res);
                         exp = res + "+";
                         result.setText("");
                         expression.setText(exp);
@@ -464,17 +574,17 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else if(count==0)
                     {
-                        op1=Integer.parseInt(res);
+                        op1=Double.parseDouble(res);
                         count+=1;
                     }
                     else{
-                        op2 = Integer.parseInt(res);
+                        op2 = Double.parseDouble(res);
                         if(op2==0 || op2==0.0){
                             eval="math error";
                         }
                         else{
-                            eval = Integer.toString(evaluate(op1, op2));
-                            op1 = Integer.parseInt(eval);
+                            eval = Double.toString(evaluate(op1, op2));
+                            op1 = Double.parseDouble(eval);
 
                             answer = eval;
                             count = -1;
@@ -504,7 +614,7 @@ public class MainActivity extends AppCompatActivity {
                     result.setText("");
                     expression.setText(exp);
                     if (count==0 && equal){
-                        op1=Integer.parseInt(res);
+                        op1=Double.parseDouble(res);
                         exp = res + "-";
                         result.setText("");
                         expression.setText(exp);
@@ -513,17 +623,17 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else if(count==0)
                     {
-                        op1=Integer.parseInt(res);
+                        op1=Double.parseDouble(res);
                         count+=1;
                     }
                     else{
-                        op2 = Integer.parseInt(res);
+                        op2 = Double.parseDouble(res);
                         if(op2==0 || op2==0.0){
                             eval="math error";
                         }
                         else{
-                            eval = Integer.toString(evaluate(op1, op2));
-                            op1 = Integer.parseInt(eval);
+                            eval = Double.toString(evaluate(op1, op2));
+                            op1 = Double.parseDouble(eval);
 
                             answer = eval;
                             count = -1;
@@ -553,7 +663,7 @@ public class MainActivity extends AppCompatActivity {
                     result.setText("");
                     expression.setText(exp);
                     if (count==0 && equal){
-                        op1=Integer.parseInt(res);
+                        op1=Double.parseDouble(res);
                         exp = res + "x";
                         result.setText("");
                         expression.setText(exp);
@@ -562,17 +672,17 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else if(count==0)
                     {
-                        op1=Integer.parseInt(res);
+                        op1=Double.parseDouble(res);
                         count+=1;
                     }
                     else{
-                        op2 = Integer.parseInt(res);
+                        op2 = Double.parseDouble(res);
                         if(op2==0 || op2==0.0){
                             eval="math error";
                         }
                         else{
-                            eval = Integer.toString(evaluate(op1, op2));
-                            op1 = Integer.parseInt(eval);
+                            eval = Double.toString(evaluate(op1, op2));
+                            op1 = Double.parseDouble(eval);
 
                             answer = eval;
                             count = -1;
@@ -603,23 +713,23 @@ public class MainActivity extends AppCompatActivity {
                     result.setText("");
                     expression.setText(exp);
                     if (count == 0 && equal) {
-                        op1 = Integer.parseInt(res);
+                        op1 = Double.parseDouble(res);
                         exp = res + "/";
                         result.setText("");
                         expression.setText(exp);
                         count += 1;
                         equal = false;
                     } else if (count == 0) {
-                        op1 = Integer.parseInt(res);
+                        op1 = Double.parseDouble(res);
                         count += 1;
                     } else {
-                        op2 = Integer.parseInt(res);
+                        op2 = Double.parseDouble(res);
                         if(op2==0 || op2==0.0){
                             eval="math error";
                         }
                         else{
-                        eval = Integer.toString(evaluate(op1, op2));
-                        op1 = Integer.parseInt(eval);
+                        eval = Double.toString(evaluate(op1, op2));
+                        op1 = Double.parseDouble(eval);
 
                         answer = eval;
                         count = -1;
@@ -649,17 +759,17 @@ public class MainActivity extends AppCompatActivity {
             int d =exp.indexOf("/",exp.length()-1);
             if(!exp.equals("") && p==-1 && mi==-1 && mu==-1 && d==-1) {
             res=(String)result.getText();
-            op2=Integer.parseInt(res);
-            int eval;
+            op2=Double.parseDouble(res);
+            double eval;
             String EVAL;
             if(operatorPlus){
                 eval=op1+op2;
-                EVAL=Integer.toString(eval);
+                EVAL=Double.toString(eval);
                 result.setText(EVAL);
             }
             else if(operatorMul){
                 eval=op1*op2;
-                EVAL=Integer.toString(eval);
+                EVAL=Double.toString(eval);
                 result.setText(EVAL);
             }
             else if(operatorDiv){
@@ -668,23 +778,16 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                 eval=op1/op2;
-                EVAL=Integer.toString(eval);
+                EVAL=Double.toString(eval);
             }
                 result.setText(EVAL);
             }
             else if(operatorMinus){
                 eval=op1-op2;
-                EVAL=Integer.toString(eval);
+                EVAL=Double.toString(eval);
                 result.setText(EVAL);
             }
             equal = true;
-
-
-
-            //result.setText("");
-            //expression.setText(answer);
-            //op1=Integer.parseInt(answer);
-            //equal = true;
             count=0;
             }
         });
